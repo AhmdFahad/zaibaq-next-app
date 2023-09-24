@@ -2,9 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 :root {
+  color: #f0ece4;
   background-color: #151515;
-  color: white;
-}
-
-body {
+  background-image: url(../public/bubble.png);
+  background-size: 100vh;
 }
