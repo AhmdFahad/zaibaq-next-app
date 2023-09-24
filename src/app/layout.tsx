@@ -1,6 +1,7 @@
 import "./styles/globals.css";
 import type { Metadata } from "next";
 import { Noto_Sans_Arabic } from "next/font/google";
+import Navbar from "./components/navbar";
 import Head from "next/head";
 import React from "react";
 
@@ -17,7 +18,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <Head>
         <link rel="icon" href="./favicon.ico" sizes="any" />
       </Head>
-      <body className={font.className}>{children}</body>
+      <body className={font.className}>
+        <div>
+          <Navbar></Navbar>
+        </div>
+        {children}
+      </body>
     </html>
   );
 };
