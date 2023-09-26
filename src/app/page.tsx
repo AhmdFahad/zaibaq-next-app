@@ -1,11 +1,13 @@
 import React from "react";
-import Navbar from "./components/navbar";
 import Startnow from "./components/startnow";
+import Responsivenavbar from "./components/responsivenavbar";
 const page = () => {
   return (
     <>
-      <Navbar />
+      <Responsivenavbar />
       <Startnow />
+      <br />
+      <br />
       <div className=" flex justify-center  items-center ">
         <p className="text-5xl ">قادمين قريبا</p>
         <br />
