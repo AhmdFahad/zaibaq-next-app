@@ -1,9 +1,16 @@
-import React from 'react'
+import React from "react";
+import Navbar from "../components/navbar";
+import AuthForm from "./components/authForm";
 
 const page = () => {
   return (
-    <div className='text-center'>auth</div>
-  )
-}
+    <>
+      <Navbar />
+      <div className="max-w-screen-lg mx-auto 5 text-center">
+        <AuthForm></AuthForm>
+      </div>
+    </>
+  );
+};
 
-export default page
+export default page;

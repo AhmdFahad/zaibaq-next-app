@@ -39,13 +39,7 @@ const Navbar = () => {
           {/* Right Section (Logo) */}
           <div className="">
             <Link href={"/"}>
-              <Image
-                src={logo}
-                alt="Logo"
-                className="w-16 h-16"
-                width={128}
-                height={128}
-              />
+              <Image src={logo} alt="Logo" className="w-16 h-16" />
             </Link>
           </div>
         </div>

@@ -16,6 +16,10 @@ const config: Config = {
       colors: {
         "main-white": "#f0ece4",
         "main-dark": "#151515",
+        "main-second-dark": "#1D1C20",
+        "main-DustyRose": "#d4a6b1",
+        "main-PaleCoral": "#f5b7a5",
+        "main-MutedBlue": "#536878",
       },
     },
   },
