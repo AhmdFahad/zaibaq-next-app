@@ -16,11 +16,11 @@ const Navbar = () => {
           </div>
 
           {/* Center Section (3 Buttons) */}
-          <div className="font-extrabold">
-            <ul className="flex space-x-10">
+          <div className="font-extrabold ">
+            <ul className="flex space-x-10 ">
               <li>
                 <Link href="/stores">
-                  <button className="">المتاجر</button>
+                  <button>المتاجر</button>
                 </Link>
               </li>
               <li>
