@@ -1,6 +1,7 @@
 import React from "react";
 import Startnow from "./components/startnow";
 import Responsivenavbar from "./components/responsivenavbar";
+import Footer from "./components/footer";
 const page = () => {
   return (
     <>
@@ -9,9 +10,9 @@ const page = () => {
       <br />
       <br />
       <div className=" flex justify-center  items-center ">
-        <p className="text-5xl ">قادمين قريبا</p>
         <br />
       </div>
+      <Footer />
     </>
   );
 };
