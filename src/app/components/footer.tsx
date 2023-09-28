@@ -54,7 +54,7 @@ const Footer = () => {
           {/* User Usage link */}
           <a
             href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
+            className="text-gray-300 hover:text-white transition duration-300 pr-2"
           >
             سياسة الاستخذام
           </a>
