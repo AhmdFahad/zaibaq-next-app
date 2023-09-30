@@ -1,9 +1,10 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import Responsivenavbar from "../components/responsivenavbar";
 const page = () => {
   return (
     <>
-      <Navbar />
+      <Responsivenavbar />
+      <h1 className="text-center"> سيتم عرض جميع مواقع المستخدمين قريبا </h1>
     </>
   );
 };

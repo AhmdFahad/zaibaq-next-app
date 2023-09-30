@@ -1,11 +1,10 @@
-import React from "react";
-import Navbar from "../components/navbar";
+import Responsivenavbar from "../components/responsivenavbar";
 import AuthForm from "./components/authForm";
 
 const page = () => {
   return (
     <>
-      <Navbar />
+      <Responsivenavbar />
       <div className="max-w-screen-lg mx-auto 5 text-center">
         <AuthForm></AuthForm>
       </div>
