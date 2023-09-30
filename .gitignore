@@ -37,3 +37,4 @@ next-env.d.ts
 #bun Lockfile  https://bun.sh/docs/install/lockfile
 bun.lockb
 yarn.lock
+src/app/components/footer.tsx

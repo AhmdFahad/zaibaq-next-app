@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { SocialIcon } from "react-social-icons";
+import PrivacyPolicyModal from "./PrivacyPolicyModal";
+import UsagePolicyModel from "./UsagePolicyModel";
 
 const Footer = () => {
   return (
@@ -38,26 +40,11 @@ const Footer = () => {
 
         <div className="flex space-x-4">
           {/* Contact link */}
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
-            تواصل معنا
-          </a>
+          <a href="#">تواصل معنا</a>
           {/* Privacy Policy link */}
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
-            سياسة الخصوصيه
-          </a>
+          <PrivacyPolicyModal />
           {/* User Usage link */}
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
-            سياسة الاستخذام
-          </a>
+          <UsagePolicyModel />
         </div>
       </div>
     </footer>

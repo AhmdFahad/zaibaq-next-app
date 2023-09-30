@@ -1,12 +1,14 @@
 import React from "react";
-import Navbar from "../components/navbar";
+import Responsivenavbar from "../components/responsivenavbar";
 
 const Page = () => {
   return (
     <>
-      <Navbar />
+      <Responsivenavbar />
       <div>
-        <div className="max-w-screen-lg mx-auto 5 text-center">page</div>
+        <div className="max-w-screen-lg mx-auto 5 text-center">
+          <p>سيتم اضافه محتوى تعريفي عن زئبق قريبا</p>
+        </div>
       </div>
     </>
   );
