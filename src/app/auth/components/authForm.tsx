@@ -13,6 +13,8 @@ interface FormData {
   password: string;
 }
 
+//TODO :Handle Bug:::: becuase clinnt rendreing the fontawesome icon take time to rander and  when it appears show the icon in big
+
 const AuthForm = () => {
   const [isRegistration, setIsRegistration] = useState<boolean>(false);
   const [passwordMatch, setPasswordMatch] = useState("");
@@ -145,9 +147,9 @@ const AuthForm = () => {
           )}
           <div>
             <button
-              disabled={!passwordInputMatch}
+              disabled={!passwordInputMatch && isRegistration}
               className={
-                passwordInputMatch
+                passwordInputMatch || !isRegistration
                   ? "bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md"
                   : "bg-blue-950 bg-opacity-60  text-white font-semibold py-2 px-4 rounded-md"
               }
