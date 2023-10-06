@@ -7,14 +7,14 @@ import {
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
-
+import axios from "axios";
+import { useRouter } from "next/navigation";
 interface FormData {
   email: string;
   password: string;
 }
 
 //TODO :Handle Bug:::: becuase clinnt rendreing the fontawesome icon take time to rander and  when it appears show the icon in big
-
 const AuthForm = () => {
   const [isRegistration, setIsRegistration] = useState<boolean>(false);
   const [passwordMatch, setPasswordMatch] = useState("");
@@ -22,6 +22,49 @@ const AuthForm = () => {
     email: "",
     password: "",
   });
+  const router = useRouter();
+  const userRegister = async (data: FormData) => {
+    const url = "http://localhost:8080/api/v1/auth/signup";
+    axios
+      .post(url, {
+        email: data.email,
+        password: data.password,
+      })
+      .then(
+        (response) => {
+          //console.log("JWT Token is");
+          console.log(response.data);
+          //const claims = atob(response.data.token.split(".")[1]);
+          //console.log(typeof claims);
+          //let x = JSON.parse(claims);
+          //console.log(typeof x);
+          //extract claims
+          //console.log(x.sub);
+          router.push("/");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
+
+  const userLogin = async (data: FormData) => {
+    const url = "http://localhost:8080/api/v1/auth/signin";
+    axios
+      .post(url, {
+        email: data.email,
+        password: data.password,
+      })
+      .then(
+        (response) => {
+          console.log("JWT Token is");
+          console.log(response.data.token);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -42,6 +85,7 @@ const AuthForm = () => {
         "and password:",
         formData.password
       );
+      userRegister(formData);
     } else {
       console.log(
         "Logging in with email:",
@@ -49,6 +93,7 @@ const AuthForm = () => {
         "and password:",
         formData.password
       );
+      userLogin(formData);
     }
 
     setFormData({

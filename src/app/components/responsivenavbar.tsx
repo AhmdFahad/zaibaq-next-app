@@ -4,6 +4,10 @@ import Link from "next/link";
 import { useState } from "react"; // Import React useState for handling the mobile menu state
 import logo from "../public/logo.png";
 
+const UserLogin = () => {
+  return <></>;
+};
+
 const Responsivenavbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 

@@ -4,6 +4,7 @@ import { SocialIcon } from "react-social-icons";
 import PrivacyPolicyModal from "./PrivacyPolicyModal";
 import UsagePolicyModel from "./UsagePolicyModel";
 import Link from "next/link";
+import ContactUsModel from "./ContactUsModel";
 
 const Footer = () => {
   return (
@@ -14,7 +15,7 @@ const Footer = () => {
           <span className="text-gray-300 hover:text-white transition duration-300">
             <SocialIcon
               target="_blank"
-              href="https://www.linkedin.com/"
+              href="mailto: support@zaibaq.tech"
               network="email"
               bgColor="#151515"
               style={{ height: 38, width: 38 }}
@@ -32,8 +33,8 @@ const Footer = () => {
         </div>
 
         <div className="flex space-x-4">
-          {/* Contact link */}
-          <Link href="#">تواصل معنا</Link>
+          {/* Contact link TTT*/}
+          <ContactUsModel />
           {/* Privacy Policy link */}
           <PrivacyPolicyModal />
           {/* User Usage link */}
