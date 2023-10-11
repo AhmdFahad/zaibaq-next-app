@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
 
         <div className="flex space-x-4">
-          {/* Contact link TTT*/}
+          {/* Contact link */}
           <ContactUsModel />
           {/* Privacy Policy link */}
           <PrivacyPolicyModal />
