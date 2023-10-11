@@ -3,6 +3,8 @@ import React from "react";
 import { SocialIcon } from "react-social-icons";
 import PrivacyPolicyModal from "./PrivacyPolicyModal";
 import UsagePolicyModel from "./UsagePolicyModel";
+import Link from "next/link";
+import ContactUsModel from "./ContactUsModel";
 
 const Footer = () => {
   return (
@@ -10,37 +12,29 @@ const Footer = () => {
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex space-x-4">
           {/* Social Media Icons */}
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
+          <span className="text-gray-300 hover:text-white transition duration-300">
             <SocialIcon
+              target="_blank"
+              href="mailto: support@zaibaq.tech"
               network="email"
               bgColor="#151515"
               style={{ height: 38, width: 38 }}
             />
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
+          </span>
+          <span className="text-gray-300 hover:text-white transition duration-300">
             <SocialIcon
+              target="_blank"
+              href="https://www.linkedin.com/"
               network="linkedin"
               bgColor="#151515"
               style={{ height: 38, width: 38 }}
             />
-          </a>
-          <a
-            href="#"
-            className="text-gray-300 hover:text-white transition duration-300"
-          >
-            <i className="fab fa-instagram" aria-hidden="true"></i>
-          </a>
+          </span>
         </div>
 
         <div className="flex space-x-4">
           {/* Contact link */}
-          <a href="#">تواصل معنا</a>
+          <ContactUsModel />
           {/* Privacy Policy link */}
           <PrivacyPolicyModal />
           {/* User Usage link */}
