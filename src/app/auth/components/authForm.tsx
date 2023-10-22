@@ -5,10 +5,14 @@ import {
   faCircleCheck,
   faKey,
   faCircleXmark,
+  faHourglassEmpty,
 } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { toast } from "react-toastify";
+
 interface FormData {
   email: string;
   password: string;
@@ -23,6 +27,44 @@ const AuthForm = () => {
     password: "",
   });
   const router = useRouter();
+  const token = Cookies.get("token");
+
+  useEffect(() => {
+    if (token !== undefined) {
+      // Redirect to the auth page
+      router.push("/");
+
+      // Show a pop-up message
+      toast.info("انتا مسجل الدخول فعلا", {
+        position: "bottom-center", // You can change the position as needed
+      });
+    }
+  }, [token]);
+
+  // const checkIfUserHasValidToken = () => {
+  //   const url = "http://localhost:8080/";
+  //   const token = Cookies.get("token");
+  //   const config = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   };
+
+  //   axios
+  //     .get(url, config)
+  //     .then((response) => {
+  //       // Handle the response data here
+  //       console.log(response.data);
+  //       if (response.status === 200) {
+  //         console.log(response.data);
+  //         router.push("/");
+  //         return true;
+  //       }
+  //     })
+  //     .catch((error) => {});
+  //   return false;
+  // };
+
   const userRegister = async (data: FormData) => {
     const url = "http://localhost:8080/api/v1/auth/signup";
     axios
@@ -32,17 +74,36 @@ const AuthForm = () => {
       })
       .then(
         (response) => {
-          //console.log("JWT Token is");
-          console.log(response.data);
-          //const claims = atob(response.data.token.split(".")[1]);
-          //console.log(typeof claims);
-          //let x = JSON.parse(claims);
-          //console.log(typeof x);
-          //extract claims
-          //console.log(x.sub);
-          router.push("/");
+          if (response.status === 201) {
+            const { token } = response.data;
+            Cookies.set("token", token);
+            router.push("/");
+            console.log(response);
+            toast.success("تم انشاء الحساب بنجاح ", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         },
         (error) => {
+          if (error.response.status === 409) {
+            toast.error("المتسخدم موجود بالفعل ,سجل الدخول", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
           console.log(error);
         }
       );
@@ -50,6 +111,7 @@ const AuthForm = () => {
 
   const userLogin = async (data: FormData) => {
     const url = "http://localhost:8080/api/v1/auth/signin";
+
     axios
       .post(url, {
         email: data.email,
@@ -57,11 +119,36 @@ const AuthForm = () => {
       })
       .then(
         (response) => {
-          console.log("JWT Token is");
-          console.log(response.data.token);
+          console.log(response);
+
+          if (response.status === 200) {
+            const { token } = response.data;
+            Cookies.set("token", token);
+            router.push("/");
+            toast.success("تم تسجيل الدخول بنجاح ", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         },
+
         (error) => {
-          console.log(error);
+          toast.error("الأيميل أو الرقم السري خطأ.", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       );
   };

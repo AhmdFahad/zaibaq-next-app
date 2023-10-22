@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react"; // Import React useState for handling the mobile menu state
+import { useEffect, useState } from "react"; // Import React useState for handling the mobile menu state
 import logo from "../public/logo.png";
+import UserLoginAndProfile from "./userLoginAndProfile";
 
 const UserLogin = () => {
   return <></>;
@@ -10,7 +11,6 @@ const UserLogin = () => {
 
 const Responsivenavbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -19,15 +19,8 @@ const Responsivenavbar = () => {
     <div className="p-4 w-full top-0 left-0">
       <div className="max-w-screen-lg mx-auto border-b-2 border-white border-opacity-5">
         <div className="flex flex-row sm:flex-row items-center justify-between text-main-white">
-          <div className="flex items-center font-extrabold hover:drop-shadow-md bg-main-white text-main-dark px-2 rounded-md hover:caret-yellow-500">
-            {/* Left Section (User Register/Login) */}
-            <Link href="/auth">
-              <button className="hover:text-slate-600 transition duration-300">
-                تسجيل الدخول
-              </button>
-            </Link>
-          </div>
-
+          {/* Left Section (User Register/Login) */}
+          <UserLoginAndProfile />
           {/* Mobile Menu Button (Hamburger Icon) */}
           <button
             className="sm:hidden font-thin text-3xl"
