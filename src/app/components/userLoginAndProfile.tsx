@@ -1,15 +1,21 @@
 "use client";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import DropBar from "./dropBar";
 
 const UserLoginAndProfile = () => {
   var token = Cookies.get("token");
-  const isLogedin = useState(token === undefined ? false : true);
-
-  if (!isLogedin) {
+  const [isLoggedin, setIsLoggedin] = useState(
+    token === undefined ? false : true
+  );
+  useEffect(() => {
+    const x = token === undefined ? false : true;
+    setIsLoggedin(x);
+  }, [token]);
+  if (!isLoggedin) {
     return (
       <>
         {
@@ -26,14 +32,7 @@ const UserLoginAndProfile = () => {
   } else {
     return (
       <>
-        <Link href="/auth">
-          <button className="hover:text-slate-600 transition duration-300">
-            <FontAwesomeIcon
-              icon={faEnvelope}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-main-dark"
-            />
-          </button>
-        </Link>
+        <DropBar />
       </>
     );
   }

@@ -78,10 +78,32 @@ const AuthForm = () => {
             const { token } = response.data;
             Cookies.set("token", token);
             router.push("/");
-            alert("Registration successful. Token:" + token);
+            console.log(response);
+            toast.success("تم انشاء الحساب بنجاح ", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
           }
         },
         (error) => {
+          if (error.response.status === 409) {
+            toast.error("المتسخدم موجود بالفعل ,سجل الدخول", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
           console.log(error);
         }
       );
@@ -89,6 +111,7 @@ const AuthForm = () => {
 
   const userLogin = async (data: FormData) => {
     const url = "http://localhost:8080/api/v1/auth/signin";
+
     axios
       .post(url, {
         email: data.email,
@@ -96,6 +119,8 @@ const AuthForm = () => {
       })
       .then(
         (response) => {
+          console.log(response);
+
           if (response.status === 200) {
             const { token } = response.data;
             Cookies.set("token", token);
@@ -112,6 +137,7 @@ const AuthForm = () => {
             });
           }
         },
+
         (error) => {
           toast.error("الأيميل أو الرقم السري خطأ.", {
             position: "bottom-center",
