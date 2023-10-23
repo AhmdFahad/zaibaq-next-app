@@ -6,9 +6,9 @@ import DropBar from "./dropBar";
 import { isTokenValid } from "../service";
 const UserLoginAndProfile = () => {
   const token = Cookies.get("token");
-  const [isLoggedin, setIsLoggedin] = useState(isTokenValid(token));
+  const [isLoggedin, setIsLoggedin] = useState(isTokenValid());
   useEffect(() => {
-    setIsLoggedin(isTokenValid(token));
+    setIsLoggedin(isTokenValid());
   }, [token]);
 
   if (!isLoggedin) {
