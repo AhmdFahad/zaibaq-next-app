@@ -22,7 +22,6 @@ const UsagePolicyModel = () => {
 
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center text-main-dark ">
-          {/* Background overlay with reduced opacity */}
           <div
             onClick={closeModal}
             className="fixed top-0 left-0 w-full h-full bg-black transition ease-in-out delay-150 opacity-60 z-10 "
@@ -38,15 +37,12 @@ const UsagePolicyModel = () => {
               <h2 className="text-xl font-bold mb-4 text-right">
                 سياسة الخصوصية
               </h2>{" "}
-              {/* Arabic text example */}
               <p className="text-right">
-                {/* Your Arabic privacy policy text goes here */}
                 مرحبًا بك في سياسة الاستخدام
                 <br />
                 <span className="text-red-600 opacity-80">
                   سيتم توضيح سياسه الاستخدام قريبا
                 </span>
-                {/* Replace this with your actual Arabic privacy policy content. */}
               </p>
             </div>
           </div>

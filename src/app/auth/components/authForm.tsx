@@ -5,13 +5,13 @@ import {
   faCircleCheck,
   faKey,
   faCircleXmark,
-  faHourglassEmpty,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+import { isTokenValid } from "@/app/service";
 
 interface FormData {
   email: string;
@@ -20,50 +20,23 @@ interface FormData {
 
 //TODO :Handle Bug:::: becuase clinnt rendreing the fontawesome icon take time to rander and  when it appears show the icon in big
 const AuthForm = () => {
-  const [isRegistration, setIsRegistration] = useState<boolean>(false);
-  const [passwordMatch, setPasswordMatch] = useState("");
   const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
   });
+  const [isRegistration, setIsRegistration] = useState<boolean>(false);
+  const [passwordMatch, setPasswordMatch] = useState("");
   const router = useRouter();
-  const token = Cookies.get("token");
 
   useEffect(() => {
-    if (token !== undefined) {
-      // Redirect to the auth page
+    if (isTokenValid()) {
+      console.log("Token is valid");
       router.push("/");
-
-      // Show a pop-up message
       toast.info("انتا مسجل الدخول فعلا", {
         position: "bottom-center", // You can change the position as needed
       });
     }
-  }, [token]);
-
-  // const checkIfUserHasValidToken = () => {
-  //   const url = "http://localhost:8080/";
-  //   const token = Cookies.get("token");
-  //   const config = {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   };
-
-  //   axios
-  //     .get(url, config)
-  //     .then((response) => {
-  //       // Handle the response data here
-  //       console.log(response.data);
-  //       if (response.status === 200) {
-  //         console.log(response.data);
-  //         router.push("/");
-  //         return true;
-  //       }
-  //     })
-  //     .catch((error) => {});
-  //   return false;
-  // };
+  }, []);
 
   const userRegister = async (data: FormData) => {
     const url = "http://localhost:8080/api/v1/auth/signup";

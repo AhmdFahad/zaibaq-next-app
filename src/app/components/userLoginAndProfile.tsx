@@ -1,20 +1,16 @@
 "use client";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import DropBar from "./dropBar";
-
+import { isTokenValid } from "../service";
 const UserLoginAndProfile = () => {
-  var token = Cookies.get("token");
-  const [isLoggedin, setIsLoggedin] = useState(
-    token === undefined ? false : true
-  );
+  const token = Cookies.get("token");
+  const [isLoggedin, setIsLoggedin] = useState(isTokenValid(token));
   useEffect(() => {
-    const x = token === undefined ? false : true;
-    setIsLoggedin(x);
+    setIsLoggedin(isTokenValid(token));
   }, [token]);
+
   if (!isLoggedin) {
     return (
       <>
