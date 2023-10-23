@@ -12,6 +12,7 @@ const DropBar = () => {
   const logout = () => {
     Cookies.remove("token");
     router.push("/");
+    router.refresh();
     toast.info("تم تسجيل الخروج بنجاح ", {
       position: "bottom-center",
       autoClose: 5000,
@@ -40,20 +41,18 @@ const DropBar = () => {
           </button>
         </div>
         {isOpen && (
-          <div className="absolute let-0 mt-2 w-22 bg-main-white border rounded-md border-gray-300 shadow-md">
-            {/* Dropdown content goes here */}
+          <div className="absolute let-0 mt-1 w-22 bg-main-white border rounded-md border-gray-300 shadow-md">
             <ul>
               <Link href="/profile">
-                <li>
-                  <p className="block px-4 py-2 text-gray-800 ">Profile</p>
+                <li className="block px-4 py-2 text-sm text-gray-800 border-main-dark border-b-2 border-opacity-30">
+                  حسابي
                 </li>
               </Link>
               <button onClick={logout}>
-                <li>
-                  <p className="block px-4 py-2 text-gray-800 ">logout</p>
+                <li className="block px-4 py-2 text-sm text-gray-800 ">
+                  تسجيل الخروج
                 </li>
               </button>
-              {/* Add more dropdown items as needed */}
             </ul>
           </div>
         )}

@@ -22,7 +22,6 @@ const ContactUsModel = () => {
 
       {isOpen && (
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center text-main-dark ">
-          {/* Background overlay with reduced opacity */}
           <div
             onClick={closeModal}
             className="fixed top-0 left-0 w-full h-full bg-black transition ease-in-out delay-150 opacity-60 z-10 "
@@ -38,10 +37,8 @@ const ContactUsModel = () => {
               <h2 className="text-xl font-bold mb-4 text-right">
                 طرق التواصل معنا
               </h2>{" "}
-              {/* Arabic text example */}
               <p className="text-right">
-                {/* Your Arabic privacy policy text goes here */}
-                يمكنك بالدعم الفني عن طريق البريد الألكتروني
+                يمكنك التواصل بالدعم الفني عن طريق البريد الألكتروني
                 <br />
                 <span className="text-red-600 opacity-80"></span>
                 <a
@@ -50,7 +47,6 @@ const ContactUsModel = () => {
                 >
                   support@zaibaq.tech
                 </a>
-                {/* Replace this with your actual Arabic privacy policy content. */}
               </p>
             </div>
           </div>

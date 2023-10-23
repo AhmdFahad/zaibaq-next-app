@@ -2,10 +2,30 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import Cookies from "js-cookie";
+import { isTokenValid } from "@/app/service";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Profile = () => {
+  const router = useRouter();
+
   useEffect(() => {
-    userProfile();
+    if (isTokenValid()) {
+      userProfile();
+    } else {
+      console.log("No log in ");
+      router.push("/");
+      toast.info("سجل الدخول أولا ", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   }, []);
 
   const userProfile = async () => {
