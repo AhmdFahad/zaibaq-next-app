@@ -40,7 +40,7 @@ const AuthForm = () => {
 
   const userRegister = async (data: FormData) => {
     const url =
-      "http://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signup";
+      "https://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signup";
     axios
       .post(url, {
         email: data.email,
@@ -85,7 +85,7 @@ const AuthForm = () => {
 
   const userLogin = async (data: FormData) => {
     const url =
-      "http://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signin";
+      "https://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signin";
 
     axios
       .post(url, {
