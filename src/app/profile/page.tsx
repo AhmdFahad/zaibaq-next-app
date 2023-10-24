@@ -6,7 +6,9 @@ const page = () => {
   return (
     <>
       <Responsivenavbar />
-      <Profile />
+      <div className="max-w-screen-lg mx-auto 5 text-center">
+        <Profile />
+      </div>
     </>
   );
 };

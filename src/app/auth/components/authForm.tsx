@@ -30,7 +30,6 @@ const AuthForm = () => {
 
   useEffect(() => {
     if (isTokenValid()) {
-      console.log("Token is valid");
       router.push("/");
       toast.info("انتا مسجل الدخول فعلا", {
         position: "bottom-center", // You can change the position as needed
@@ -40,7 +39,7 @@ const AuthForm = () => {
 
   const userRegister = async (data: FormData) => {
     const url =
-      "https://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signup";
+      "http://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signup";
     axios
       .post(url, {
         email: data.email,
@@ -52,7 +51,6 @@ const AuthForm = () => {
             const { token } = response.data;
             Cookies.set("token", token);
             router.push("/");
-            console.log(response);
             toast.success("تم انشاء الحساب بنجاح ", {
               position: "bottom-center",
               autoClose: 5000,
@@ -78,14 +76,25 @@ const AuthForm = () => {
               theme: "light",
             });
           }
-          console.log(error);
+          if (error.response.status === 400) {
+            toast.error("يوجد خطأ بالايميل", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         }
       );
   };
 
   const userLogin = async (data: FormData) => {
     const url =
-      "https://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signin";
+      "http://ec2-15-185-195-117.me-south-1.compute.amazonaws.com:8080/api/v1/auth/signin";
 
     axios
       .post(url, {
@@ -94,8 +103,6 @@ const AuthForm = () => {
       })
       .then(
         (response) => {
-          console.log(response);
-
           if (response.status === 200) {
             const { token } = response.data;
             Cookies.set("token", token);
@@ -141,20 +148,20 @@ const AuthForm = () => {
     setPasswordMatch("");
 
     if (isRegistration) {
-      console.log(
-        "Registering user with email:",
-        formData.email,
-        "and password:",
-        formData.password
-      );
+      // console.log(
+      //   "Registering user with email:",
+      //   formData.email,
+      //   "and password:",
+      //   formData.password
+      // );
       userRegister(formData);
     } else {
-      console.log(
-        "Logging in with email:",
-        formData.email,
-        "and password:",
-        formData.password
-      );
+      // console.log(
+      //   "Logging in with email:",
+      //   formData.email,
+      //   "and password:",
+      //   formData.password
+      // );
       userLogin(formData);
     }
 
