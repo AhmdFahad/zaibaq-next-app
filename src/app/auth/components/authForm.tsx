@@ -38,8 +38,7 @@ const AuthForm = () => {
   }, []);
 
   const userRegister = async (data: FormData) => {
-    const url =
-      "https://ec2-157-175-177-99.me-south-1.compute.amazonaws.com/api/v1/auth/signup";
+    const url = "https://api.zaibaq.tech/api/v1/auth/signup";
     axios
       .post(url, {
         email: data.email,
@@ -93,8 +92,7 @@ const AuthForm = () => {
   };
 
   const userLogin = async (data: FormData) => {
-    const url =
-      "https://ec2-157-175-177-99.me-south-1.compute.amazonaws.com/api/v1/auth/signin";
+    const url = "https://api.zaibaq.tech/api/v1/auth/signin";
 
     axios
       .post(url, {
