@@ -37,7 +37,7 @@ const Profile = () => {
           Authorization: `Bearer ${token}`,
         },
         method: "GET",
-        url: `https://ec2-157-175-177-99.me-south-1.compute.amazonaws.com/api/v1/user/profile`,
+        url: `https://api.zaibaq.tech/api/v1/user/profile`,
       })
       .then((response) => {
         console.log(response);

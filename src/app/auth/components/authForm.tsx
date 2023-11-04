@@ -6,12 +6,14 @@ import {
   faKey,
   faCircleXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import facebookIcon from "@/app/public/facebook.png";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { isTokenValid } from "@/app/service";
+import Image from "next/image";
 
 interface FormData {
   email: string;
@@ -38,8 +40,7 @@ const AuthForm = () => {
   }, []);
 
   const userRegister = async (data: FormData) => {
-    const url =
-      "https://ec2-157-175-177-99.me-south-1.compute.amazonaws.com/api/v1/auth/signup";
+    const url = "https://api.zaibaq.tech/api/v1/auth/signup";
     axios
       .post(url, {
         email: data.email,
@@ -75,6 +76,7 @@ const AuthForm = () => {
               progress: undefined,
               theme: "light",
             });
+            return;
           }
           if (error.response.status === 400) {
             toast.error("يوجد خطأ بالايميل", {
@@ -87,14 +89,24 @@ const AuthForm = () => {
               progress: undefined,
               theme: "light",
             });
+            return;
           }
+          toast.error("!!يوجد خلل بالموقع الرجاء المحاوله لاحقا", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         }
       );
   };
 
   const userLogin = async (data: FormData) => {
-    const url =
-      "https://ec2-157-175-177-99.me-south-1.compute.amazonaws.com/api/v1/auth/signin";
+    const url = "https://api.zaibaq.tech/api/v1/auth/signin";
 
     axios
       .post(url, {
@@ -121,7 +133,20 @@ const AuthForm = () => {
         },
 
         (error) => {
-          toast.error("الأيميل أو الرقم السري خطأ.", {
+          if (error.response.status === 409) {
+            toast.error("الأيميل أو الرقم السري خطأ.", {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            return;
+          }
+          toast.error("!!يوجد خلل بالموقع الرجاء المحاوله لاحقا", {
             position: "bottom-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -134,7 +159,9 @@ const AuthForm = () => {
         }
       );
   };
-
+  const facebookOauth = () => {
+    console.log("clicked");
+  };
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData({
@@ -190,7 +217,7 @@ const AuthForm = () => {
               <span>:الايميل</span>
               <div className="relative">
                 <input
-                  className="form-input mt-1 block w-full rounded-md border-b-4 border-main-dark   shadow-sm pr-10 text-center"
+                  className="form-input mt-1 block w-full rounded-md border-b-4 border-main-dark   shadow-sm pr-10 text-center font-sans "
                   type="email"
                   name="email"
                   value={formData.email}
@@ -209,7 +236,7 @@ const AuthForm = () => {
               <span>:الرقم السري</span>
               <div className="relative">
                 <input
-                  className="form-input mt-1 block w-full rounded-md border-b-4 border-main-dark   shadow-sm pr-10 text-center"
+                  className="form-input mt-1 block w-full rounded-md border-b-4 border-main-dark   shadow-sm pr-10 text-center font-sans "
                   type="password"
                   name="password"
                   value={formData.password}
@@ -229,7 +256,7 @@ const AuthForm = () => {
                 <span>:تاكيد الرقم السري</span>
                 <div className="relative">
                   <input
-                    className="form-input mt-1 block w-full rounded-md border-b-4 border-main-dark   shadow-sm pr-10 text-center"
+                    className="form-input mt-1 block w-full rounded-md border-b-4 border-main-dark   shadow-sm pr-10 text-center font-sans"
                     type="password"
                     name="password-ok"
                     value={passwordMatch}
@@ -259,13 +286,24 @@ const AuthForm = () => {
           ) : (
             <></>
           )}
-          <div>
+          <div className="flex justify-center">
+            <div className=" py-2 px-4">
+              <div>
+                <Image
+                  src={facebookIcon}
+                  alt="facebook"
+                  className="object-fill w-8 hover:cursor-pointer"
+                  onClick={facebookOauth}
+                />
+              </div>
+            </div>
+
             <button
               disabled={!passwordInputMatch && isRegistration}
               className={
                 passwordInputMatch || !isRegistration
-                  ? "bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md"
-                  : "bg-blue-950 bg-opacity-60  text-white font-semibold py-2 px-4 rounded-md"
+                  ? "bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md mr-4"
+                  : "bg-blue-950 bg-opacity-60  text-white font-semibold py-2 px-4 rounded-md mr-4"
               }
               type="submit"
             >
